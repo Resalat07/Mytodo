@@ -5,12 +5,12 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthProvider/AuthProvider';
 
 const AddTask = () => {
-    const {user}  = useContext(AuthContext)
-    
+    const { user } = useContext(AuthContext)
 
 
 
-    const url = `http://localhost:5000/addedTask?email=${user?.email}`;
+
+    const url = `https://task1-alba-server.vercel.app/addedTask?email=${user?.email}`;
     const { data: addTasks = [], refetch } = useQuery({
         queryKey: ['addedTask'],
         queryFn: async () => {
@@ -19,7 +19,7 @@ const AddTask = () => {
 
             const data = await res.json();
             return data;
-            
+
 
         }
     })
@@ -41,7 +41,7 @@ const AddTask = () => {
         const updateTask = {
             picture,
             comment,
-            userUpdate : 'updated'
+            userUpdate: 'updated'
 
         }
 
@@ -49,7 +49,7 @@ const AddTask = () => {
 
 
 
-        fetch(`http://localhost:5000/addTask/${taskId}`, {
+        fetch(`https://task1-alba-server.vercel.app/addTask/${taskId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -69,7 +69,7 @@ const AddTask = () => {
             })
 
 
-        
+
 
     }
 
@@ -93,7 +93,7 @@ const AddTask = () => {
 
 
 
-        fetch('http://localhost:5000/addTask', {
+        fetch('https://task1-alba-server.vercel.app/addTask', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -130,42 +130,42 @@ const AddTask = () => {
 
             <div className=' mt-24'>
                 <div className=' grid grid-cols-3 gap-4 items-center '>
-                {
-                    addTasks.map(addTask => addTask.userUpdate !== 'updated' && <div key={addTask._id} >
-                        <Card className=' w-96 mb-10 shadow' >
+                    {
+                        addTasks.map(addTask => addTask.userUpdate !== 'updated' && <div key={addTask._id} >
+                            <Card className=' w-96 mb-10 shadow' >
 
-                            <CardHeader
-                                variant="gradient"
+                                <CardHeader
+                                    variant="gradient"
 
-                                className="mb-4 grid place-items-center shadow-xl bg-teal-700 text-white"
-                            >
-                                <Typography variant="h3" >
-                                    {addTask.name}
-                                </Typography>
-                            </CardHeader>
-                            <CardBody className="flex flex-col gap-4">
+                                    className="mb-4 grid place-items-center shadow-xl bg-teal-700 text-white"
+                                >
+                                    <Typography variant="h3" >
+                                        {addTask.name}
+                                    </Typography>
+                                </CardHeader>
+                                <CardBody className="flex flex-col gap-4">
 
-                                <form onSubmit={handleTask} >
-                                    <input type="text" name='picture' placeholder='Enter The Photo Url' className="input w-full border p-3 rounded-lg mb-3" />
-                                    <input type="text" name='comment' placeholder='Enter The Comment' className="input w-full border p-3 rounded-lg mb-3" />
-
-
-
-
-                                    <input  name="id" type="text" defaultValue={addTask._id} disabled placeholder="Product Id" className="input w-full input-bordered text-white" />
+                                    <form onSubmit={handleTask} >
+                                        <input type="text" name='picture' placeholder='Enter The Photo Url' className="input w-full border p-3 rounded-lg mb-3" />
+                                        <input type="text" name='comment' placeholder='Enter The Comment' className="input w-full border p-3 rounded-lg mb-3" />
 
 
 
-                                    <input className='p-2 text-white rounded-lg bg-orange-600 w-full' type="submit" value="Submit" />
 
-                                </form>
+                                        <input name="id" type="text" defaultValue={addTask._id} disabled placeholder="Product Id" className="input w-full input-bordered text-white" />
 
 
-                            </CardBody>
 
-                        </Card>
-                    </div>)
-                }
+                                        <input className='p-2 text-white rounded-lg bg-orange-600 w-full' type="submit" value="Submit" />
+
+                                    </form>
+
+
+                                </CardBody>
+
+                            </Card>
+                        </div>)
+                    }
                 </div>
             </div>
 

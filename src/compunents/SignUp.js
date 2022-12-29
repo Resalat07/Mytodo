@@ -104,7 +104,7 @@ const SignUp = () => {
                         <Button variant="gradient" type="submit" fullWidth>
                             Sign Up
                         </Button>
-                        <Button variant="gradient" onClick={googleLogin} fullWidth>
+                        <Button variant="gradient" className=' mt-3' onClick={googleLogin} fullWidth>
                             Google Login
                         </Button>
 
