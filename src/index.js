@@ -3,11 +3,32 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AuthProvider from './context/AuthProvider/AuthProvider'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import './styles/_main.scss'
+
+const queryClient = new QueryClient()
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+
+    <div className=' dark'>
+    <div className=' background flx'>
+    <QueryClientProvider client={queryClient}>
+     <AuthProvider>
+      <App />
+    </AuthProvider>
+    </QueryClientProvider>
+    </div>
+    </div>
+    
   </React.StrictMode>
 );
 

@@ -1,0 +1,26 @@
+@use '../colors/colors' as *;
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.dark{
+
+    .text{
+        color: white;
+
+    }
+
+    .background{
+        background-color: $dark-300;
+        
+    }
+    .flx{
+        height: 100vh;
+    }
+
+
+}
